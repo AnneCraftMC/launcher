@@ -13,5 +13,5 @@ option(BUILD_TESTING OFF)
 #option(CMAKE_USE_WINSSL ON)
 #option(SSL_ENABLED ON)
 
-add_subdirectory ("curl-7.68.0")
+add_subdirectory ("curl")
 add_subdirectory ("launcher")
