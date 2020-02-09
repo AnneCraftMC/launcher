@@ -13,7 +13,8 @@ int jre_download() {
 	curl_handle = curl_easy_init();
 	curl_easy_setopt(curl_handle, CURLOPT_URL, "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u242-b08/OpenJDK8U-jre_x64_windows_hotspot_8u242b08.zip");
 	curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, jre_curl_write_data);
-	curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 1L);
+	curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 0L);
+	curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
 	curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 0L);
 
 	zip = fopen("jre.zip", "wb");

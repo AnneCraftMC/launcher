@@ -10,8 +10,11 @@ project ("launcher")
 option(HTTP_ONLY ON)
 option(BUILD_CURL_EXE OFF)
 option(BUILD_TESTING OFF)
-#option(CMAKE_USE_WINSSL ON)
-#option(SSL_ENABLED ON)
+option(USE_OPENSSL ON)
 
+option(LIBRESSL_APPS "Build apps" OFF)
+option(LIBRESSL_TESTS OFF)
+
+add_subdirectory ("libressl")
 add_subdirectory ("curl")
 add_subdirectory ("launcher")
