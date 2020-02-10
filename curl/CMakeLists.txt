@@ -57,6 +57,8 @@ string(REGEX MATCH "#define LIBCURL_VERSION_NUM 0x[0-9a-fA-F]+"
   CURL_VERSION_NUM ${CURL_VERSION_H_CONTENTS})
 string(REGEX REPLACE "[^0]+0x" "" CURL_VERSION_NUM ${CURL_VERSION_NUM})
 
+# CUSTOM SETTINGS LOOK HERE <==================================================================================
+set(USE_OPENSSL 1)
 
 # Setup package meta-data
 # SET(PACKAGE "curl")
@@ -73,7 +75,7 @@ include_directories(${CURL_SOURCE_DIR}/include)
 
 option(CURL_WERROR "Turn compiler warnings into errors" OFF)
 option(PICKY_COMPILER "Enable picky compiler options" ON)
-option(BUILD_CURL_EXE "Set to ON to build curl executable." ON)
+option(BUILD_CURL_EXE "Set to ON to build curl executable." OFF)
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(ENABLE_ARES "Set to ON to enable c-ares support" OFF)
 if(WIN32)
@@ -128,7 +130,7 @@ endif()
 
 include(CurlSymbolHiding)
 
-option(HTTP_ONLY "disables all protocols except HTTP (This overrides all CURL_DISABLE_* options)" OFF)
+option(HTTP_ONLY "disables all protocols except HTTP (This overrides all CURL_DISABLE_* options)" ON)
 mark_as_advanced(HTTP_ONLY)
 option(CURL_DISABLE_FTP "disables FTP" OFF)
 mark_as_advanced(CURL_DISABLE_FTP)
@@ -1190,15 +1192,6 @@ if(USE_MANUAL)
 endif()
 
 add_subdirectory(lib)
-
-if(BUILD_CURL_EXE)
-  add_subdirectory(src)
-endif()
-
-include(CTest)
-if(BUILD_TESTING)
-  add_subdirectory(tests)
-endif()
 
 # Helper to populate a list (_items) with a label when conditions (the remaining
 # args) are satisfied

@@ -26,14 +26,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 
-# test
-if (NOT CMAKE_DISABLE_TESTING)
-  enable_testing()
-  add_subdirectory(test)
-  find_package(Sanitizers)
-  add_sanitizers(${PROJECT_NAME} ${test_out})
-endif()
-
 ####
 # Installation (https://github.com/forexample/package-example) {
 
